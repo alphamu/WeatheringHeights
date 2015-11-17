@@ -1,0 +1,4 @@
+<resources>
+    <dimen name="card_width">480dp</dimen>
+    <dimen name="forecast_icon_small">32dp</dimen>
+</resources>

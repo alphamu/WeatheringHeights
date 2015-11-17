@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/space_default">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/temp_city_icon"
+            android:layout_width="@dimen/forecast_icon_small"
+            android:layout_height="@dimen/forecast_icon_small"
+            android:scaleType="fitCenter" />
+
+        <TextView
+            android:id="@+id/temp_city"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="00 in City"
+            android:textSize="24dp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/today_forecast"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Sunny" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/day_one"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:lineSpacingExtra="@dimen/space"
+                android:text="DAY"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/day_one_forecast"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/forecast_icon_small"
+                android:gravity="center_horizontal"
+                android:lineSpacingExtra="@dimen/space"
+                android:scaleType="fitCenter" />
+
+            <TextView
+                android:id="@+id/day_one_min"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:lineSpacingExtra="@dimen/space"
+                android:text="MIN" />
+
+            <TextView
+                android:id="@+id/day_one_max"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:lineSpacingExtra="@dimen/space"
+                android:text="MAX" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/day_two"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:lineSpacingExtra="@dimen/space"
+                android:text="DAY"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/day_two_forecast"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/forecast_icon_small"
+                android:gravity="center_horizontal"
+                android:lineSpacingExtra="@dimen/space"
+                android:scaleType="fitCenter" />
+
+            <TextView
+                android:id="@+id/day_two_min"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:lineSpacingExtra="@dimen/space"
+                android:text="MIN" />
+
+            <TextView
+                android:id="@+id/day_two_max"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:lineSpacingExtra="@dimen/space"
+                android:text="MAX" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/day_three"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:lineSpacingExtra="@dimen/space"
+                android:text="DAY"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/day_three_forecast"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/forecast_icon_small"
+                android:gravity="center_horizontal"
+                android:lineSpacingExtra="@dimen/space"
+                android:scaleType="fitCenter" />
+
+
+            <TextView
+                android:id="@+id/day_three_min"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:lineSpacingExtra="@dimen/space"
+                android:text="MIN" />
+
+            <TextView
+                android:id="@+id/day_three_max"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:lineSpacingExtra="@dimen/space"
+                android:text="MAX" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/day_four"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:lineSpacingExtra="@dimen/space"
+                android:text="DAY"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/day_four_forecast"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/forecast_icon_small"
+                android:gravity="center_horizontal"
+                android:lineSpacingExtra="@dimen/space"
+                android:scaleType="fitCenter" />
+
+            <TextView
+                android:id="@+id/day_four_min"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:lineSpacingExtra="@dimen/space"
+                android:text="MIN" />
+
+            <TextView
+                android:id="@+id/day_four_max"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:lineSpacingExtra="@dimen/space"
+                android:text="MAX" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/day_five"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:lineSpacingExtra="@dimen/space"
+                android:text="DAY"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/day_five_forecast"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/forecast_icon_small"
+                android:gravity="center_horizontal"
+                android:lineSpacingExtra="@dimen/space"
+                android:scaleType="fitCenter" />
+
+            <TextView
+                android:id="@+id/day_five_min"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:lineSpacingExtra="@dimen/space"
+                android:text="MIN" />
+
+            <TextView
+                android:id="@+id/day_five_max"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:lineSpacingExtra="@dimen/space"
+                android:text="MAX" />
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

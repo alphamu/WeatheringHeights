@@ -1,0 +1,19 @@
+<resources>
+    <dimen name="space">4dp</dimen>
+    <dimen name="space_x2">8dp</dimen>
+    <dimen name="space_x3">12dp</dimen>
+    <dimen name="space_x4">16dp</dimen>
+    <dimen name="space_x5">20dp</dimen>
+    <dimen name="space_x6">24dp</dimen>
+    <dimen name="space_x7">28dp</dimen>
+    <dimen name="space_x8">32dp</dimen>
+    <dimen name="card_width">320dp</dimen>
+    <dimen name="forecast_icon_small">32dp</dimen>
+    <dimen name="space_default">@dimen/space_x4</dimen>
+    <dimen name="app_bar_height">180dp</dimen>
+    <dimen name="fab_margin">@dimen/space_x4</dimen>
+    <dimen name="text_margin">@dimen/space_x4</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">@dimen/space_x4</dimen>
+    <dimen name="activity_vertical_margin">@dimen/space_x4</dimen>
+</resources>
