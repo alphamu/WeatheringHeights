@@ -25,6 +25,7 @@ android {
         }
     }
 
+    flavorDimensions "app"
     // If you need to add more flavors, consider using flavor dimensions.
     productFlavors {
         mock {
@@ -59,6 +60,7 @@ android {
             }
         }
     }
+    buildToolsVersion '26.0.2'
 }
 
 dependencies {
