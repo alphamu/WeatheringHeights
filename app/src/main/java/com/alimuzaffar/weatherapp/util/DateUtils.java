@@ -10,6 +10,7 @@ import java.util.TimeZone;
 public class DateUtils {
 
     public static final SimpleDateFormat DISPLAY;
+    public static final SimpleDateFormat DISPLAY_DAY;
     public static final SimpleDateFormat DISPLAY_SHORT;
 
     public static final long SECOND_MILLISECONDS = 1000l;
@@ -21,6 +22,7 @@ public class DateUtils {
         //Use 12 or 24 hour time depending on device config.
         DISPLAY = new SimpleDateFormat("EEEE, dd MMMM yyyy", Locale.getDefault());
         DISPLAY_SHORT = new SimpleDateFormat("EEE", Locale.getDefault());
+        DISPLAY_DAY = new SimpleDateFormat("EEEE", Locale.getDefault());
         DISPLAY.setTimeZone(TimeZone.getDefault());
         DISPLAY_SHORT.setTimeZone(TimeZone.getDefault());
     }
@@ -63,6 +65,10 @@ public class DateUtils {
 
     public static long getCountDownMillisSeconds(Date date) {
         return date.getTime() - System.currentTimeMillis();
+    }
+
+    public static String getDay(Date date) {
+        return DISPLAY_DAY.format(date).toUpperCase();
     }
 
 }

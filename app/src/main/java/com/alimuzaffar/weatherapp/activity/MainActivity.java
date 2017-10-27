@@ -1,7 +1,6 @@
 package com.alimuzaffar.weatherapp.activity;
 
 import android.app.Activity;
-import android.app.Application;
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.Intent;
@@ -16,9 +15,9 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.alimuzaffar.weatherapp.BuildConfig;
 import com.alimuzaffar.weatherapp.Constants;
 import com.alimuzaffar.weatherapp.R;
-import com.alimuzaffar.weatherapp.WeatherApplication;
 import com.alimuzaffar.weatherapp.fragment.NetworkHelper;
 import com.alimuzaffar.weatherapp.fragment.ShowForecastFragment;
 import com.alimuzaffar.weatherapp.model.current.CurrentWeather;
@@ -43,7 +42,6 @@ public class MainActivity extends AppCompatActivity implements Constants, ShowFo
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,6 +51,10 @@ public class MainActivity extends AppCompatActivity implements Constants, ShowFo
                 overridePendingTransition(R.anim.slide_in_from_right_animation, R.anim.slide_out_to_left_animation);
             }
         });
+        if (isNotMock()) {
+            setTitle(R.string.accessibility_app_name_welcome);
+            fab.setContentDescription("Search and select a city");
+        }
 
         //Check for network connectivity
         mNetworkHelper = (NetworkHelper) getSupportFragmentManager().findFragmentByTag(NetworkHelper.TAG);
@@ -119,8 +121,14 @@ public class MainActivity extends AppCompatActivity implements Constants, ShowFo
         hideProgressIndicator();
         String name = AppSettings.getInstance(this).getString(AppSettings.Key.CURRENT_LOCATION_NAME);
         CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
-        collapsingToolbarLayout.setTitle(WeatherHelper.getFormattedTemperature(weather.getMain().getTemp()) + " " + name);
+        String formattedTemp = WeatherHelper.getFormattedTemperature(weather.getMain().getTemp());
+        collapsingToolbarLayout.setTitle(formattedTemp + " " + name);
+        if (isNotMock()) {
+            String formattedTempAccess = WeatherHelper.getFormattedTemperatureAccessibility(weather.getMain().getTemp());
+            collapsingToolbarLayout.announceForAccessibility(String.format("The temperature in %s, is %s", name.replace("AU", "Australia"), formattedTempAccess));
+        }
         updateAllWidgets();
+
     }
 
     @Override
@@ -170,5 +178,9 @@ public class MainActivity extends AppCompatActivity implements Constants, ShowFo
             intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids);
             sendBroadcast(intent);
         }
+    }
+
+    public boolean isNotMock() {
+        return !BuildConfig.FLAVOR.equals("mock");
     }
 }

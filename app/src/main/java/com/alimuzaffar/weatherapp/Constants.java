@@ -25,6 +25,8 @@ public interface Constants {
 
     String FORMAT_TEMP_C = "%.1f\u00b0C";
     String FORMAT_TEMP_F = "%.1f\u00b0F";
+    String FORMAT_TEMP_C_ACCESSIBILITY = "%.1f degrees celsius";
+    String FORMAT_TEMP_F_ACCESSIBILITY = "%.1f degrees fahrenheit";
 
 
 }

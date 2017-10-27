@@ -40,6 +40,10 @@ public class Forecast implements Serializable {
         return DateUtils.dateToDayDateString(date, useShortFormat);
     }
 
+    public String getDay() {
+        return DateUtils.getDay(date);
+    }
+
     public long getEpoc() {
         return epoc;
     }

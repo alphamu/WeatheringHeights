@@ -1,20 +1,17 @@
 package com.alimuzaffar.weatherapp.fragment;
 
 
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.os.Bundle;
 import android.app.Fragment;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.alimuzaffar.weatherapp.BuildConfig;
 import com.alimuzaffar.weatherapp.Constants;
 import com.alimuzaffar.weatherapp.R;
-import com.alimuzaffar.weatherapp.WeatherApplication;
 import com.alimuzaffar.weatherapp.db.RecentLocationsHelper;
 import com.alimuzaffar.weatherapp.model.current.CurrentWeather;
 import com.alimuzaffar.weatherapp.model.current.Main;
@@ -41,6 +38,9 @@ public class ShowForecastFragment extends Fragment implements Constants {
     TextView[] mMax = new TextView[5];
     TextView mEmpty;
 
+    View mTempCityContainer;
+    View [] mDayContainer = new View[5];
+
     public ShowForecastFragment() {
         // Required empty public constructor
     }
@@ -57,8 +57,15 @@ public class ShowForecastFragment extends Fragment implements Constants {
         View v = inflater.inflate(R.layout.fragment_show_forecast, container, false);
         mTempCity = (TextView) v.findViewById(R.id.temp_city);
         mImgTempCity = (ImageView) v.findViewById(R.id.temp_city_icon);
-
+        mTempCityContainer = v.findViewById(R.id.temp_city_container);
         mForecastToday = (TextView) v.findViewById(R.id.today_forecast);
+        if (isNotMock()) {
+            mTempCityContainer.setFocusable(true);
+            mTempCityContainer.setFocusableInTouchMode(true);
+            mTempCity.setFocusable(false);
+            mImgTempCity.setFocusable(false);
+        }
+
         mDay[0] = (TextView) v.findViewById(R.id.day_one);
         mDay[1] = (TextView) v.findViewById(R.id.day_two);
         mDay[2] = (TextView) v.findViewById(R.id.day_three);
@@ -82,6 +89,19 @@ public class ShowForecastFragment extends Fragment implements Constants {
         mForecast[2] = (ImageView) v.findViewById(R.id.day_three_forecast);
         mForecast[3] = (ImageView) v.findViewById(R.id.day_four_forecast);
         mForecast[4] = (ImageView) v.findViewById(R.id.day_five_forecast);
+
+        mDayContainer[0] = v.findViewById(R.id.day1_container);
+        mDayContainer[1] = v.findViewById(R.id.day2_container);
+        mDayContainer[2] = v.findViewById(R.id.day3_container);
+        mDayContainer[3] = v.findViewById(R.id.day4_container);
+        mDayContainer[4] = v.findViewById(R.id.day5_container);
+
+        if (isNotMock()) {
+            for (View c : mDayContainer) {
+                c.setFocusable(true);
+                c.setFocusableInTouchMode(true);
+            }
+        }
 
         mEmpty = (TextView) v.findViewById(R.id.empty);
 
@@ -138,7 +158,7 @@ public class ShowForecastFragment extends Fragment implements Constants {
         if (!StringHelper.isGpsCoordinates(location)) {
             WeatherHelper.getWeatherForLocationByName(getActivity(), location, callback);
         } else {
-            String [] geo = StringHelper.convertToGpsCoordinates(location);
+            String[] geo = StringHelper.convertToGpsCoordinates(location);
             WeatherHelper.getWeatherForLocationByGeo(getActivity(), geo[0], geo[1], callback);
         }
     }
@@ -149,7 +169,7 @@ public class ShowForecastFragment extends Fragment implements Constants {
         AppSettings.getInstance(getActivity()).put(AppSettings.Key.CURRENT_LOCATION_ID, city.getId());
         showCurrentWeather();
         RecentLocationsHelper.addLocationToDB(city.getId(), city.getDisplayString());
-        for (int i=0; i<mDay.length; i++) {
+        for (int i = 0; i < mDay.length; i++) {
             Forecast f = forecasts.getForecasts().get(i);
             mDay[i].setText(f.getDateString(true));
             mMin[i].setText(WeatherHelper.getFormattedTemperature(f.getTemp().getMinTemp()));
@@ -158,6 +178,16 @@ public class ShowForecastFragment extends Fragment implements Constants {
                 mForecast[i].setContentDescription(f.getWeather().get(0).getMain());
                 Ion.with(mForecast[i])
                         .load(f.getWeather().get(0).getIcon());
+            }
+            if (isNotMock()) {
+                mDayContainer[i].setContentDescription(
+                        String.format("In %s, on %s, it's %s with a low of %s and a high of %s.",
+                                city.getName(),
+                                f.getDay(),
+                                mForecast[i].getContentDescription(),
+                                f.getMain().getMinTemp(),
+                                f.getMain().getMaxTemp()
+                        ));
             }
         }
     }
@@ -178,17 +208,29 @@ public class ShowForecastFragment extends Fragment implements Constants {
                         mForecastToday.setText(weather.getMain());
                         Ion.with(mImgTempCity)
                                 .load(weather.getIcon());
+                        if (isNotMock()) {
+                            String cityNameDescription = cityName.replace("AU", "Australia");
+                            mTempCityContainer.setContentDescription(
+                                    String.format("In %s, it's %s and %s",
+                                            cityNameDescription,
+                                            weather.getDescription(),
+                                            WeatherHelper.getFormattedTemperatureAccessibility(main.getTemp()))
+                            );
+                            mForecastToday.setContentDescription(String.format("It's %s today", weather.getDescription()));
+                        }
                     }
                 }
             });
         }
     }
 
+    public boolean isNotMock() {
+        return !BuildConfig.FLAVOR.equals("mock");
+    }
 
     public interface OnShowForecastListener {
         void onStartWeatherUpdate();
+
         void onWeatherUpdateFinished(CurrentWeather weather);
     }
-
-
 }

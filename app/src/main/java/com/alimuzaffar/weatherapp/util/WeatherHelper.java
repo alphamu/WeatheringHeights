@@ -2,16 +2,11 @@ package com.alimuzaffar.weatherapp.util;
 
 import android.content.Context;
 import android.util.Log;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.alimuzaffar.weatherapp.Constants;
 import com.alimuzaffar.weatherapp.R;
 import com.alimuzaffar.weatherapp.WeatherApplication;
-import com.alimuzaffar.weatherapp.db.RecentLocationsHelper;
 import com.alimuzaffar.weatherapp.model.current.CurrentWeather;
-import com.alimuzaffar.weatherapp.model.forecast.City;
-import com.alimuzaffar.weatherapp.model.forecast.Forecast;
 import com.alimuzaffar.weatherapp.model.forecast.WeatherForecasts;
 import com.google.gson.reflect.TypeToken;
 import com.koushikdutta.async.future.FutureCallback;
@@ -135,6 +130,15 @@ public class WeatherHelper implements Constants {
             return String.format(Constants.FORMAT_TEMP_F, temp);
         } else {
             return String.format(Constants.FORMAT_TEMP_C, temp);
+        }
+    }
+
+    public static String getFormattedTemperatureAccessibility(float temp) {
+        boolean useF = AppSettings.getInstance(WeatherApplication.getAppContext()).getBoolean(AppSettings.Key.IS_FAHRENHEIT);
+        if (useF) {
+            return String.format(Constants.FORMAT_TEMP_F_ACCESSIBILITY, temp);
+        } else {
+            return String.format(Constants.FORMAT_TEMP_C_ACCESSIBILITY, temp);
         }
     }
 

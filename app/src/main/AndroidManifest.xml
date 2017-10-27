@@ -16,6 +16,8 @@
         <activity
             android:name="com.alimuzaffar.weatherapp.activity.MainActivity"
             android:label="@string/app_name"
+            android:description="@string/accessibility_app_name_welcome"
+
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

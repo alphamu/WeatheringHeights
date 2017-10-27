@@ -21,7 +21,5 @@
     <string name="undo_long">%s was deleted.</string>
     <string name="search_hint">City, zip, location</string>
     <string name="no_recent">No recent locations</string>
-
-    <string name="google_api_key">Your key</string>
-    <string name="openweather_api_key">Your key</string>
+    <string name="accessibility_app_name_welcome">Welcome to the Weathering Heights app.</string>
 </resources>
