@@ -29,7 +29,7 @@ android {
     // If you need to add more flavors, consider using flavor dimensions.
     productFlavors {
         mock {
-            applicationIdSuffix = ".old"
+            applicationIdSuffix = ".mock.old"
             buildConfigField "String", "UNITS", "\"imperial\""
             buildConfigField "String", "UNITS_TEMP", "\"F\""
         }
