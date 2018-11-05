@@ -1,11 +1,17 @@
 package com.alimuzaffar.weatherapp.model.forecast;
 
+import android.text.TextUtils;
+
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by Ali Muzaffar on 5/11/2015.
  */
 public class Prediction {
     String id;
     String description;
+    @SerializedName("structured_formatting")
+    PredictionStructuredFormatting structuredFormatting;
 
     public String getId() {
         return id;
@@ -23,8 +29,21 @@ public class Prediction {
         this.description = description;
     }
 
+    public PredictionStructuredFormatting getStructuredFormatting() {
+        return structuredFormatting;
+    }
+
+    public void setStructuredFormatting(PredictionStructuredFormatting structuredFormatting) {
+        this.structuredFormatting = structuredFormatting;
+    }
+
     @Override
     public String toString() {
-        return description;
+        if (structuredFormatting == null || TextUtils.isEmpty(structuredFormatting.mainText) || TextUtils.isEmpty(structuredFormatting.secondaryText)) {
+            return description;
+        } else {
+            return structuredFormatting.mainText + ", " + structuredFormatting.secondaryText;
+        }
+
     }
 }

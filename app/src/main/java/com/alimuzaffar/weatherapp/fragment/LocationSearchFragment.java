@@ -69,7 +69,7 @@ public class LocationSearchFragment extends Fragment implements Constants, Recen
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         Prediction p = (Prediction) parent.getItemAtPosition(position);
-                        setSelectedLocation(p.getDescription());
+                        setSelectedLocation(p.toString());
                     }
                 });
 

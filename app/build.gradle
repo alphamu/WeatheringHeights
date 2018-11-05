@@ -69,7 +69,6 @@ dependencies {
     implementation "com.android.support:palette-v7:$rootProject.supportLibraryVersion"
     implementation "com.android.support:support-annotations:$rootProject.supportLibraryVersion"
     implementation "com.koushikdutta.ion:ion:2.2.1"
-    implementation 'com.google.android.gms:play-services-gcm:16.0.0'
 
     // Dependencies for local unit tests
     testImplementation "junit:junit:$rootProject.ext.junitVersion"
