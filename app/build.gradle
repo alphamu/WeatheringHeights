@@ -29,13 +29,13 @@ android {
     // If you need to add more flavors, consider using flavor dimensions.
     productFlavors {
         mock {
-            //applicationIdSuffix = ".mock"
+            applicationIdSuffix = ".old"
             buildConfigField "String", "UNITS", "\"imperial\""
             buildConfigField "String", "UNITS_TEMP", "\"F\""
         }
 
         australia {
-            //applicationIdSuffix = ".au"
+            applicationIdSuffix = ".old"
             buildConfigField "String", "UNITS", "\"metric\""
             buildConfigField "String", "UNITS_TEMP", "\"C\""
         }
