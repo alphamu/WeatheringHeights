@@ -60,34 +60,33 @@ android {
             }
         }
     }
-    buildToolsVersion '26.0.2'
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile "com.android.support:appcompat-v7:$rootProject.supportLibraryVersion"
-    compile "com.android.support:design:$rootProject.supportLibraryVersion"
-    compile "com.android.support:cardview-v7:$rootProject.supportLibraryVersion"
-    compile "com.android.support:palette-v7:$rootProject.supportLibraryVersion"
-    compile "com.android.support:support-annotations:$rootProject.supportLibraryVersion"
-    compile "com.koushikdutta.ion:ion:2.1.6"
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "com.android.support:appcompat-v7:$rootProject.supportLibraryVersion"
+    implementation "com.android.support:design:$rootProject.supportLibraryVersion"
+    implementation "com.android.support:cardview-v7:$rootProject.supportLibraryVersion"
+    implementation "com.android.support:palette-v7:$rootProject.supportLibraryVersion"
+    implementation "com.android.support:support-annotations:$rootProject.supportLibraryVersion"
+    implementation "com.koushikdutta.ion:ion:2.2.1"
 
     // Dependencies for local unit tests
-    testCompile "junit:junit:$rootProject.ext.junitVersion"
+    testImplementation "junit:junit:$rootProject.ext.junitVersion"
 
     // Espresso UI Testing
-    androidTestCompile ("com.android.support.test.espresso:espresso-core:$rootProject.ext.espressoVersion") {
+    androidTestImplementation ("com.android.support.test.espresso:espresso-core:$rootProject.ext.espressoVersion") {
         exclude module: 'appcompat-v7'
         exclude module: 'support-annotations'
     }
-    androidTestCompile ("com.android.support.test.espresso:espresso-contrib:$rootProject.ext.espressoVersion") {
+    androidTestImplementation ("com.android.support.test.espresso:espresso-contrib:$rootProject.ext.espressoVersion") {
         exclude module: 'design'
         exclude module: 'appcompat-v7'
         exclude module: 'recyclerview-v7'
         exclude module: 'support-v4'
         exclude module: 'support-annotations'
     }
-    androidTestCompile ("com.android.support.test.espresso:espresso-intents:$rootProject.ext.espressoVersion") {
+    androidTestImplementation ("com.android.support.test.espresso:espresso-intents:$rootProject.ext.espressoVersion") {
         exclude module: 'support-annotations'
     }
 }

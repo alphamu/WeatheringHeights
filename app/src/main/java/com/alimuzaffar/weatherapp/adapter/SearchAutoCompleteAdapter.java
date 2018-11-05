@@ -56,7 +56,7 @@ public class SearchAutoCompleteAdapter extends BaseAdapter implements Filterable
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(R.layout.simple_dropdown_item, parent, false);
         }
-        ((TextView) convertView.findViewById(R.id.text1)).setText(getItem(position).getDescription());
+        ((TextView) convertView.findViewById(R.id.text1)).setText(getItem(position).toString());
         return convertView;
     }
 

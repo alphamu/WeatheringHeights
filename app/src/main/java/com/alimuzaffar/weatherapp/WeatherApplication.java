@@ -3,7 +3,13 @@ package com.alimuzaffar.weatherapp;
 import android.app.Application;
 import android.content.Context;
 
-import com.alimuzaffar.weatherapp.util.AppSettings;
+import com.koushikdutta.ion.Ion;
+
+import java.security.cert.CertificateException;
+import java.security.cert.X509Certificate;
+
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
 
 /**
  * Created by Ali Muzaffar on 5/11/2015.
@@ -17,6 +23,18 @@ public class WeatherApplication extends Application {
         super.onCreate();
         mInstance = this;
         this.setAppContext(getApplicationContext());
+        Ion.getDefault(this).getHttpClient().getSSLSocketMiddleware().setTrustManagers(new TrustManager[] {new X509TrustManager() {
+            @Override
+            public void checkClientTrusted(final X509Certificate[] chain, final String authType) throws CertificateException {}
+
+            @Override
+            public void checkServerTrusted(final X509Certificate[] chain, final String authType) throws CertificateException {}
+
+            @Override
+            public X509Certificate[] getAcceptedIssuers() {
+                return new X509Certificate[0];
+            }
+        }});
     }
 
     public void setAppContext(Context mAppContext) {
